@@ -1,7 +1,7 @@
 import turtle
 
 
-def koch_snowflake(t, order, size):
+def koch_curve(t, order, size):
   """
 
   Функція для малювання рекурсивної сніжинки Коха.
@@ -16,36 +16,36 @@ def koch_snowflake(t, order, size):
     t.forward(size)
   else:
     for angle in [60, -120, 60, 0]:
-      koch_snowflake(t, order - 1, size / 3)
+      koch_curve(t, order - 1, size / 3)
       t.left(angle)
 
 
+# Функція для створення сніжинки Коха
 def draw_koch_snowflake(order, size=300):
-  """
+    window = turtle.Screen()
+    window.bgcolor("white")
 
-  Функція для налаштування середовища та малювання сніжинки Коха.
+    t = turtle.Turtle()
+    t.speed(0)
+    t.penup()
 
-  Args:
-    order: Рівень рекурсії.
-    size: Довжина сторони базового трикутника.
-  """
+    # Початкова позиція для рівностороннього трикутника
+    t.goto(-size / 2, size / 3)
+    t.pendown()
 
-  window = turtle.Screen()
-  window.bgcolor("white")
+    # Створення трьох сторін сніжинки Коха
+    for _ in range(3):
+        koch_curve(t, order, size)
+        t.right(120)
 
-  t = turtle.Turtle()
-  t.speed(0)
-  t.penup()
-  t.goto(-size / 2, 0)
-  t.pendown()
-
-  koch_snowflake(t, order, size)
-
-  window.mainloop()
-
+    window.mainloop()
 
 # Запит рівня рекурсії у користувача
-order = int(input("Введіть рівень рекурсії (0-10): "))
+recursion_level = int(input("Введіть рівень рекурсії для сніжинки Коха (0-10): "))
+draw_koch_snowflake(recursion_level)
 
-# Малювання сніжинки
-draw_koch_snowflake(order)
+# Малювання сніжинки Коха
+# koch_snowflake(t, recursion_level, 300)
+
+# Завершення
+#screen.mainloop()
