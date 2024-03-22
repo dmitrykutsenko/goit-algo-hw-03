@@ -35,7 +35,8 @@ def copy_files(source_dir: Path, dest_dir: Path) -> None:
 
         if item_path.is_dir():
             try:
-                copy_files(item_path, dest_dir / item)
+                # copy_files(item_path, dest_dir / item)
+                copy_files(item_path, dest_dir)
             except Exception as e:
                 print(f"Непередбачена помилка при рекурсивному копіюванні '{item_path}': {e}")
         else:
